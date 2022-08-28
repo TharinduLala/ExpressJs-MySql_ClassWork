@@ -1,0 +1,18 @@
+{
+  "name": "express.js-mysql_class-work",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "TharinduLala",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
