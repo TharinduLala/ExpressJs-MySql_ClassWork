@@ -14,7 +14,7 @@ connection.connect((err) => {
       if (result.warningCount === 0) {
         console.log("customer table created");
       }
-      if (err) throw err;
+      if (err) res.status(500).send(response(err.sqlMessage, null));
     });
   } else {
     console.log(err);
@@ -28,7 +28,6 @@ const getAllCustomers = (req, res) => {
 
     if (err) {
       res.status(500).send(response(err.sqlMessage, null));
-      throw err;
     }
   });
 };
@@ -47,7 +46,6 @@ const searchCustomer = (req, res) => {
 
     if (err) {
       res.status(500).send(response(err.sqlMessage, null));
-      throw err;
     }
   });
 };
@@ -63,7 +61,6 @@ const saveCustomer = (req, res) => {
       res.send(response("Customer saved...!", null));
     } else {
       res.status(500).send(response(err.sqlMessage, null));
-      throw err;
     }
   });
 };
@@ -78,15 +75,15 @@ const updateCustomer = (req, res) => {
     if (rows.affectedRows > 0) {
       res.send(response("Customer updated...!", null));
     } else {
-      res.send(response("Customer not found...!", null));
+      res.send(response("No user for id " + id, null));
     }
 
     if (err) {
       res.status(500).send(response(err.sqlMessage, null));
-      throw err;
     }
   });
 };
+
 const deleteCustomer = (req, res) => {
   const id = req.params.id;
   const query = "DELETE FROM customer WHERE id=? ";
@@ -94,12 +91,11 @@ const deleteCustomer = (req, res) => {
     if (rows.affectedRows > 0) {
       res.send(response("Customer deleted...!", null));
     } else {
-      res.send(response("Customer not found...!", null));
+      res.send(response("No user for id " + id, null));
     }
 
     if (err) {
       res.status(500).send(response(err.sqlMessage, null));
-      throw err;
     }
   });
 };
