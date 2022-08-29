@@ -19,6 +19,7 @@ connection.connect((err) => {
   } else {
     console.log(err);
   }
+  
 });
 
 const getAllCustomers = (req, res) => {
@@ -37,7 +38,6 @@ const searchCustomer = (req, res) => {
   const query = "SELECT * FROM customer WHERE id=?";
   connection.query(query, id, (err, rows) => {
     const exist = rows.length;
-
     if (exist) {
       res.send(response("Success!", rows));
     } else {
